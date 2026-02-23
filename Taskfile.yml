@@ -1,0 +1,51 @@
+version: '3'
+
+vars:
+  OWNER: your-github-username
+  IMAGE: ghcr.io/{{.OWNER}}/credit-comparison-tool
+  TAG: latest
+
+tasks:
+  dev:
+    desc: Start the development server
+    cmds:
+      - npm run dev
+
+  test:
+    desc: Run unit tests
+    cmds:
+      - npm run test:run
+
+  test:coverage:
+    desc: Run unit tests with coverage report
+    cmds:
+      - npm run test:coverage
+
+  build:
+    desc: Type-check and build the project for production
+    cmds:
+      - npm run build
+
+  docker:login:
+    desc: Log in to GitHub Container Registry (requires GITHUB_TOKEN env var)
+    cmds:
+      - echo $GITHUB_TOKEN | docker login ghcr.io -u {{.OWNER}} --password-stdin
+
+  docker:build:
+    desc: Build the Docker image (IMAGE={{.IMAGE}}, TAG={{.TAG}})
+    cmds:
+      - docker build -t {{.IMAGE}}:{{.TAG}} .
+
+  docker:push:
+    desc: Push the Docker image to GHCR
+    cmds:
+      - docker push {{.IMAGE}}:{{.TAG}}
+
+  deploy:
+    desc: Build and push the image, then roll it out to Kubernetes
+    cmds:
+      - task: docker:build
+      - task: docker:push
+      - kubectl apply -f k8s/
+      - kubectl set image deployment/credit-comparison-tool credit-comparison-tool={{.IMAGE}}:{{.TAG}}
+      - kubectl rollout status deployment/credit-comparison-tool
