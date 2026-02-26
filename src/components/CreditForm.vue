@@ -10,8 +10,8 @@
           <label class="label">
             <span class="label-text font-medium">Monto del crédito (COP)</span>
           </label>
-          <input v-model="amountStr" type="number" placeholder="Ej: 5000000" class="input input-bordered w-full" min="1"
-            @input="onInput" />
+          <input :value="displayAmount" type="text" inputmode="numeric" placeholder="Ej: 5.000.000"
+            class="input input-bordered w-full" @input="onAmountInput" />
         </div>
 
         <!-- Número de cuotas -->
@@ -28,8 +28,8 @@
           <label class="label">
             <span class="label-text font-medium">Valor de cada cuota (COP)</span>
           </label>
-          <input v-model="installmentAmountStr" type="number" placeholder="Ej: 250000"
-            class="input input-bordered w-full" min="1" @input="onInput" />
+          <input :value="displayInstallmentAmount" type="text" inputmode="numeric" placeholder="Ej: 250.000"
+            class="input input-bordered w-full" @input="onInstallmentAmountInput" />
         </div>
 
         <!-- Tasa de interés -->
@@ -70,6 +70,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { creditFormSchema } from '../schemas/creditFormSchema'
+import { useCurrencyFormat } from '../composables/useCurrencyFormat'
+
+const { formatInputNumber } = useCurrencyFormat()
 
 const props = defineProps<{
   externalError?: string
@@ -87,11 +90,30 @@ const rateStr = ref<string>('')
 const rateType = ref<'monthly' | 'annual'>('monthly')
 const localError = ref<string>('')
 
+const displayAmount = ref<string>('')
+const displayInstallmentAmount = ref<string>('')
+
 const displayError = computed(() => localError.value || props.externalError || '')
 
 function onInput(): void {
   localError.value = ''
   emit('reset')
+}
+
+function onAmountInput(e: Event): void {
+  const raw = (e.target as HTMLInputElement).value.replace(/\D/g, '')
+  amountStr.value = raw
+  displayAmount.value = raw ? formatInputNumber(Number(raw)) : ''
+  ;(e.target as HTMLInputElement).value = displayAmount.value
+  onInput()
+}
+
+function onInstallmentAmountInput(e: Event): void {
+  const raw = (e.target as HTMLInputElement).value.replace(/\D/g, '')
+  installmentAmountStr.value = raw
+  displayInstallmentAmount.value = raw ? formatInputNumber(Number(raw)) : ''
+  ;(e.target as HTMLInputElement).value = displayInstallmentAmount.value
+  onInput()
 }
 
 function submit(): void {

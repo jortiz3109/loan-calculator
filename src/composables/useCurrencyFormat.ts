@@ -11,6 +11,11 @@ const copFormatDecimals = new Intl.NumberFormat('es-CO', {
   maximumFractionDigits: 2,
 })
 
+const inputNumberFormat = new Intl.NumberFormat('es-CO', {
+  useGrouping: true,
+  maximumFractionDigits: 0,
+})
+
 export function useCurrencyFormat() {
   function formatCOP(value: number): string {
     return copFormat.format(value)
@@ -20,5 +25,9 @@ export function useCurrencyFormat() {
     return copFormatDecimals.format(value)
   }
 
-  return { formatCOP, formatCOPDecimals }
+  function formatInputNumber(value: number): string {
+    return inputNumberFormat.format(value)
+  }
+
+  return { formatCOP, formatCOPDecimals, formatInputNumber }
 }

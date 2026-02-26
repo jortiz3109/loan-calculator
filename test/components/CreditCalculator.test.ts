@@ -4,13 +4,13 @@ import CreditCalculator from '../../src/components/CreditCalculator.vue'
 
 // Helpers to locate specific inputs
 function amountInput(wrapper: ReturnType<typeof mount>) {
-  return wrapper.find('input[placeholder="Ej: 5000000"]')
+  return wrapper.find('input[placeholder="Ej: 5.000.000"]')
 }
 function installmentsInput(wrapper: ReturnType<typeof mount>) {
   return wrapper.find('input[placeholder="Ej: 24"]')
 }
 function installmentAmountInput(wrapper: ReturnType<typeof mount>) {
-  return wrapper.find('input[placeholder="Ej: 250000"]')
+  return wrapper.find('input[placeholder="Ej: 250.000"]')
 }
 function rateInput(wrapper: ReturnType<typeof mount>) {
   return wrapper.find('[data-testid="rate-input"]')
@@ -91,7 +91,7 @@ describe('CreditCalculator', () => {
 
     it('shows a Zod error for a negative amount', async () => {
       const wrapper = mount(CreditCalculator)
-      await fillRequired(wrapper, '-1', '12', '1.5')
+      await fillRequired(wrapper, '0', '12', '1.5')
       await calculateButton(wrapper).trigger('click')
       expect(wrapper.find('[role="alert"]').exists()).toBe(true)
       expect(wrapper.text()).toContain('monto')
