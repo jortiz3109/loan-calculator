@@ -123,4 +123,7 @@ task docker:login              # Authenticate with GitHub Container Registry
 task docker:build              # Build the image (BASE=/ by default)
 task docker:build BASE=/path   # Build with a custom base path
 task docker:push               # Push to GHCR
+task deploy                    # Build, push, and roll out to Kubernetes (requires k8s/ manifests)
 ```
+
+The `deploy` task applies the manifests in the `k8s/` directory and then updates the `loan-calculator` Kubernetes deployment with the new image.

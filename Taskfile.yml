@@ -49,5 +49,5 @@ tasks:
       - task: docker:build
       - task: docker:push
       - kubectl apply -f k8s/
-      - kubectl set image deployment/credit-comparison-tool credit-comparison-tool={{.IMAGE}}:{{.TAG}}
-      - kubectl rollout status deployment/credit-comparison-tool
+      - kubectl set image deployment/loan-calculator loan-calculator={{.IMAGE}}:{{.TAG}}
+      - kubectl rollout status deployment/loan-calculator

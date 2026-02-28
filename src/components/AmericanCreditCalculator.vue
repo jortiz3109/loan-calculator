@@ -32,9 +32,9 @@ function buildSchedule(amount: number, installments: number, r: number): Amortiz
   for (let i = 1; i <= installments; i++) {
     const isLast = i === installments
     const startBalance = amount
-    const interestPayment = amount * r
+    const interestPayment = Math.round(amount * r)
     const capitalPayment = isLast ? amount : 0
-    const totalPayment = isLast ? amount * r + amount : amount * r
+    const totalPayment = isLast ? interestPayment + amount : interestPayment
     const endBalance = isLast ? 0 : amount
 
     schedule.push({ month: i, startBalance, interestPayment, capitalPayment, adminFees: 0, totalPayment, endBalance })
