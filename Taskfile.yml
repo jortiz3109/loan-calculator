@@ -43,11 +43,3 @@ tasks:
     cmds:
       - docker push {{.IMAGE}}:{{.TAG}}
 
-  deploy:
-    desc: Build and push the image, then roll it out to Kubernetes
-    cmds:
-      - task: docker:build
-      - task: docker:push
-      - kubectl apply -f k8s/
-      - kubectl set image deployment/credit-comparison-tool credit-comparison-tool={{.IMAGE}}:{{.TAG}}
-      - kubectl rollout status deployment/credit-comparison-tool
