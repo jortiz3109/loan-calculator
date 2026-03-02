@@ -1,8 +1,10 @@
 <template>
   <div class="card bg-base-100 shadow-xl w-full">
     <div class="card-body">
-      <h1 class="card-title text-2xl font-bold mb-2">Calculadora de Crédito</h1>
-      <p class="text-base-content/60 text-sm mb-4">Calcula el costo total de tu crédito bancario</p>
+      <h1 class="card-title text-2xl font-bold mb-2">Sistema Francés</h1>
+      <p class="text-base-content/60 text-sm mb-4">
+        Pagás una cuota fija cada período; los intereses disminuyen y el capital aumenta
+      </p>
 
       <div class="flex flex-col gap-4">
         <!-- Monto del crédito -->
