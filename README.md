@@ -9,6 +9,7 @@ A Vue 3 web application for calculating and analyzing the total cost of a bank c
 - Displays monthly effective rate (TEM), annual effective rate (TEA), and nominal annual rate (TNA)
 - Shows total interest paid, total rate, and cost level badge (Low / Moderate / High)
 - Full month-by-month amortization table with interest, capital, and admin fee breakdown
+- Live thousands-separator formatting on COP amount fields as the user types (e.g. `5.000.000`)
 - Input validation with [Zod](https://zod.dev/)
 - COP (Colombian Peso) currency formatting
 
@@ -98,6 +99,8 @@ src/
 
 ## Docker
 
+The image accepts a `BASE` build argument that sets the Vite `--base` path (defaults to `/`).
+
 Build and run the production image locally:
 
 ```bash
@@ -105,11 +108,19 @@ docker build -t simulador-credito .
 docker run -p 8080:80 simulador-credito
 ```
 
-## Deployment
-
-The project includes a [Taskfile](https://taskfile.dev) and Kubernetes manifests. Before deploying, set the `OWNER` variable in `Taskfile.yml` to your GitHub username.
+To serve the app from a sub-path (e.g. `/loan-calculator`):
 
 ```bash
-task docker:login   # Authenticate with GitHub Container Registry
-task deploy         # Build image, push to GHCR, and roll out to Kubernetes
+docker build --build-arg BASE=/loan-calculator -t simulador-credito .
+```
+
+## Deployment
+
+The project includes a [Taskfile](https://taskfile.dev). Before deploying, set the `OWNER` variable in `Taskfile.yml` to your GitHub username.
+
+```bash
+task docker:login              # Authenticate with GitHub Container Registry
+task docker:build              # Build the image (BASE=/ by default)
+task docker:build BASE=/path   # Build with a custom base path
+task docker:push               # Push to GHCR
 ```

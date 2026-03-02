@@ -1,9 +1,11 @@
-version: '3'
+version: "3"
 
 vars:
   OWNER: your-github-username
-  IMAGE: ghcr.io/{{.OWNER}}/credit-comparison-tool
+  IMAGE: ghcr.io/{{.OWNER}}/loan-calculator
   TAG: latest
+  PLATFORM: linux/amd64
+  BASE: /
 
 tasks:
   dev:
@@ -32,9 +34,9 @@ tasks:
       - echo $GITHUB_TOKEN | docker login ghcr.io -u {{.OWNER}} --password-stdin
 
   docker:build:
-    desc: Build the Docker image (IMAGE={{.IMAGE}}, TAG={{.TAG}})
+    desc: Build the Docker image (IMAGE={{.IMAGE}}, TAG={{.TAG}}, BASE={{.BASE}})
     cmds:
-      - docker build -t {{.IMAGE}}:{{.TAG}} .
+      - docker build --platform={{.PLATFORM}} --build-arg BASE={{.BASE}} -t {{.IMAGE}}:{{.TAG}} .
 
   docker:push:
     desc: Push the Docker image to GHCR
