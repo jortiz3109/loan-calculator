@@ -2,9 +2,10 @@
 import { ref } from 'vue'
 import CreditCalculator from './components/CreditCalculator.vue'
 import AmericanCreditCalculator from './components/AmericanCreditCalculator.vue'
+import GermanCreditCalculator from './components/GermanCreditCalculator.vue'
 import AppFooter from './components/AppFooter.vue'
 
-type AmortizationSystem = 'french' | 'american'
+type AmortizationSystem = 'french' | 'american' | 'german'
 
 const activeSystem = ref<AmortizationSystem>('french')
 </script>
@@ -31,12 +32,21 @@ const activeSystem = ref<AmortizationSystem>('french')
         >
           Sistema Americano
         </button>
+        <button
+          role="tab"
+          class="tab"
+          :class="activeSystem === 'german' ? 'tab-active' : ''"
+          @click="activeSystem = 'german'"
+        >
+          Sistema Alemán
+        </button>
       </div>
     </div>
 
     <!-- Calculator panels -->
     <CreditCalculator v-if="activeSystem === 'french'" />
     <AmericanCreditCalculator v-else-if="activeSystem === 'american'" />
+    <GermanCreditCalculator v-else-if="activeSystem === 'german'" />
 
     <AppFooter />
   </div>
