@@ -1,7 +1,7 @@
 /// <reference path="../../src/types.d.ts" />
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import AmortizationTable from '../../src/components/AmortizationTable.vue'
+import AmortizationTable from '../../src/components/FrenchAmortizationTable.vue'
 
 // Build a simple schedule: n months at 0% interest, equal capital payments
 function buildSchedule(amount: number, months: number, adminFees = 0): AmortizationRow[] {

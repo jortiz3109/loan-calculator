@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import CreditCalculator from '../../src/components/CreditCalculator.vue'
+import CreditCalculator from '../../src/components/FrenchCreditCalculator.vue'
 
 // Helpers to locate specific inputs
 function amountInput(wrapper: ReturnType<typeof mount>) {

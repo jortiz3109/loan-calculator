@@ -3,12 +3,12 @@
 
     <!-- Stack: form on top, results behind -->
     <div class="flex flex-col gap-4 w-full max-w-5xl">
-      <CreditForm :external-error="errorMsg" @calculate="calculate" @reset="clearResults" />
-      <CreditResults v-if="result" :result="result" />
+      <FrenchCreditForm :external-error="errorMsg" @calculate="calculate" @reset="clearResults" />
+      <FrenchCreditResults v-if="result" :result="result" />
     </div>
 
     <!-- Tabla de amortización -->
-    <AmortizationTable v-if="result" :schedule="result.schedule" :total-paid="result.totalPaid"
+    <FrenchAmortizationTable v-if="result" :schedule="result.schedule" :total-paid="result.totalPaid"
       :show-admin-fees="result.hasAdminFees" />
 
   </div>
@@ -16,9 +16,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import CreditForm from './CreditForm.vue'
-import CreditResults from './CreditResults.vue'
-import AmortizationTable from './AmortizationTable.vue'
+import FrenchCreditForm from './FrenchCreditForm.vue'
+import FrenchCreditResults from './FrenchCreditResults.vue'
+import FrenchAmortizationTable from './FrenchAmortizationTable.vue'
 import { creditFormSchema } from '../schemas/creditFormSchema'
 
 const errorMsg = ref<string>('')
