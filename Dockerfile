@@ -11,7 +11,7 @@ RUN npm run build -- --base="$BASE"
 
 # Serve stage
 FROM nginx:alpine AS serve
-LABEL mantainer="John Edisson Ortiz"
+LABEL maintainer="John Edisson Ortiz"
 LABEL email="me@johndev.co" 
 LABEL org.opencontainers.image.description="A Colombian credit/loan calculator with amortization schedules" 
 LABEL org.opencontainers.image.title="loan-calculator" 
