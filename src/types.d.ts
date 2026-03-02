@@ -37,3 +37,18 @@ interface AmericanResult {
   totalRate: number;
   schedule: AmortizationRow[];
 }
+
+interface GermanResult {
+  amount: number;
+  installments: number;
+  capitalPayment: number;
+  firstInstallmentAmount: number;
+  lastInstallmentAmount: number;
+  monthlyRate: number;
+  annualRate: number;
+  nominalRate: number;
+  totalPaid: number;
+  totalInterest: number;
+  totalRate: number;
+  schedule: AmortizationRow[];
+}
