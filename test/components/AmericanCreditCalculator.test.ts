@@ -150,7 +150,7 @@ describe("AmericanCreditCalculator", () => {
       await fillRequired(wrapper, "1200000", "12", "1.5");
       await calculateButton(wrapper).trigger("click");
       const rows = wrapper.findAll("tbody tr");
-      expect(rows[rows.length - 1].text()).toContain("bullet");
+      expect(rows[rows.length - 1].text()).toContain("Final");
     });
 
     it("does not show the bullet badge on non-last rows", async () => {
