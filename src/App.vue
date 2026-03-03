@@ -4,8 +4,9 @@ import FrenchCreditCalculator from './components/FrenchCreditCalculator.vue'
 import AmericanCreditCalculator from './components/AmericanCreditCalculator.vue'
 import GermanCreditCalculator from './components/GermanCreditCalculator.vue'
 import AppFooter from './components/AppFooter.vue'
+import ThirdPartyLibraries from './components/ThirdPartyLibraries.vue'
 
-type AmortizationSystem = 'french' | 'american' | 'german'
+type AmortizationSystem = 'french' | 'american' | 'german' | 'libraries'
 
 const activeSystem = ref<AmortizationSystem>('french')
 </script>
@@ -40,6 +41,14 @@ const activeSystem = ref<AmortizationSystem>('french')
         >
           Sistema Alemán
         </button>
+        <button
+          role="tab"
+          class="tab"
+          :class="activeSystem === 'libraries' ? 'tab-active' : ''"
+          @click="activeSystem = 'libraries'"
+        >
+          Librerías
+        </button>
       </div>
     </div>
 
@@ -47,6 +56,7 @@ const activeSystem = ref<AmortizationSystem>('french')
     <FrenchCreditCalculator v-if="activeSystem === 'french'" />
     <AmericanCreditCalculator v-else-if="activeSystem === 'american'" />
     <GermanCreditCalculator v-else-if="activeSystem === 'german'" />
+    <ThirdPartyLibraries v-else-if="activeSystem === 'libraries'" />
 
     <AppFooter />
   </div>
