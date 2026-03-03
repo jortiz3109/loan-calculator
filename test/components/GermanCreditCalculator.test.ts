@@ -153,8 +153,8 @@ describe("GermanCreditCalculator", () => {
       expect(wrapper.text()).toContain("Primera cuota");
       expect(wrapper.text()).toContain("Última cuota");
       // First installment label shows period 1, last shows period 12
-      expect(wrapper.text()).toContain("período 1");
-      expect(wrapper.text()).toContain("período 12");
+      expect(wrapper.text()).toContain("mes 1");
+      expect(wrapper.text()).toContain("mes 12");
     });
 
     it("calculates TNA as 12x the monthly rate", async () => {

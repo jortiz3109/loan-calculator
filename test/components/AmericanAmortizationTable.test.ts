@@ -86,9 +86,9 @@ describe("AmericanAmortizationTable", () => {
         props: { schedule, totalPaid: 1200000 + 4 * 18000 },
       });
       const rows = wrapper.findAll("tbody tr");
-      expect(rows[rows.length - 1].text()).toContain("bullet");
+      expect(rows[rows.length - 1].text()).toContain("Final");
       for (let i = 0; i < rows.length - 1; i++) {
-        expect(rows[i].text()).not.toContain("bullet");
+        expect(rows[i].text()).not.toContain("Final");
       }
     });
 
