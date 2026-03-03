@@ -1,7 +1,7 @@
 version: "3"
 
 vars:
-  OWNER: your-github-username
+  OWNER: jortiz3109
   IMAGE: ghcr.io/{{.OWNER}}/loan-calculator
   TAG: latest
   PLATFORM: linux/amd64

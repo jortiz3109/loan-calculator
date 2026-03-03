@@ -3,7 +3,7 @@
     <div class="card-body">
       <h2 class="card-title text-xl font-bold">Tabla de amortización</h2>
       <p class="text-base-content/60 text-sm mb-2">
-        Desglose mensual — intereses periódicos y capital al vencimiento
+        Desglose mensual con pagos de interés en cada período y devolución total del capital en la última cuota.
       </p>
 
       <div class="overflow-x-auto">
@@ -23,7 +23,7 @@
               :class="row.month === schedule.length ? 'bg-primary/10 font-semibold' : ''">
               <td class="text-center font-medium">
                 {{ row.month }}
-                <span v-if="row.month === schedule.length" class="badge badge-primary badge-xs ml-1">bullet</span>
+                <span v-if="row.month === schedule.length" class="badge badge-primary badge-xs ml-1">Final</span>
               </td>
               <td class="text-right">{{ formatCOPDecimals(row.startBalance) }}</td>
               <td class="text-right text-warning">{{ formatCOPDecimals(row.interestPayment) }}</td>

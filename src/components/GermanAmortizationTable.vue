@@ -3,7 +3,7 @@
     <div class="card-body">
       <h2 class="card-title text-xl font-bold">Tabla de amortización</h2>
       <p class="text-base-content/60 text-sm mb-2">
-        Desglose mensual — capital fijo, intereses decrecientes
+        Desglose mensual con capital fijo: cada mes pagás el mismo abono a capital y la cuota total va bajando.
       </p>
 
       <div class="overflow-x-auto">
