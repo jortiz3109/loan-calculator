@@ -2,7 +2,9 @@
   <div class="card bg-base-100 shadow-xl w-full max-w-5xl">
     <div class="card-body">
       <h2 class="card-title text-xl font-bold">Tabla de amortización</h2>
-      <p class="text-base-content/60 text-sm mb-2">Desglose mensual del crédito</p>
+      <p class="text-base-content/60 text-sm mb-2">
+        Desglose mensual con cuota constante: al inicio pagás más intereses y, con el tiempo, aumenta el abono a capital.
+      </p>
 
       <div class="overflow-x-auto">
         <table class="table table-xs table-zebra w-full font-mono">

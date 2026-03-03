@@ -106,7 +106,7 @@ function onAmountInput(e: Event): void {
   const raw = (e.target as HTMLInputElement).value.replace(/\D/g, '')
   amountStr.value = raw
   displayAmount.value = raw ? formatInputNumber(Number(raw)) : ''
-  ;(e.target as HTMLInputElement).value = displayAmount.value
+    ; (e.target as HTMLInputElement).value = displayAmount.value
   onInput()
 }
 
@@ -114,7 +114,7 @@ function onInstallmentAmountInput(e: Event): void {
   const raw = (e.target as HTMLInputElement).value.replace(/\D/g, '')
   installmentAmountStr.value = raw
   displayInstallmentAmount.value = raw ? formatInputNumber(Number(raw)) : ''
-  ;(e.target as HTMLInputElement).value = displayInstallmentAmount.value
+    ; (e.target as HTMLInputElement).value = displayInstallmentAmount.value
   onInput()
 }
 

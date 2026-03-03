@@ -2,32 +2,35 @@
   <div class="card bg-base-100 shadow-xl w-full">
     <div class="card-body">
       <h2 class="card-title text-xl font-bold mb-2">Resultados</h2>
+      <p class="text-base-content/60 text-sm mb-2">
+        Resumen del costo total, tasas y pago de capital al vencimiento.
+      </p>
 
       <div class="stats stats-vertical shadow w-full">
         <div class="stat">
           <div class="stat-title">Total a pagar</div>
           <div class="stat-value text-primary text-xl">{{ formatCOP(result.totalPaid) }}</div>
           <div class="stat-desc">
-            {{ result.installments - 1 }} cuotas de interés + 1 cuota final con capital
+            {{ result.installments - 1 }} cuotas de interés y una cuota final con capital
           </div>
         </div>
 
         <div class="stat">
           <div class="stat-title">Cuota periódica (interés)</div>
           <div class="stat-value text-xl">{{ formatCOP(result.periodicInterestPayment) }}</div>
-          <div class="stat-desc">Pagás solo intereses en los períodos 1 a {{ result.installments - 1 }}</div>
+          <div class="stat-desc">Pagás solo intereses del mes 1 al {{ result.installments - 1 }}</div>
         </div>
 
         <div class="stat">
           <div class="stat-title">Última cuota</div>
           <div class="stat-value text-xl">{{ formatCOP(result.lastInstallmentAmount) }}</div>
-          <div class="stat-desc">Interés + devolución del capital (período {{ result.installments }})</div>
+          <div class="stat-desc">Incluye interés del período y devolución total del capital (mes {{ result.installments }})</div>
         </div>
 
         <div class="stat">
           <div class="stat-title">Interés total</div>
           <div class="stat-value text-warning text-xl">{{ formatCOP(result.totalInterest) }}</div>
-          <div class="stat-desc">Sobre un crédito de {{ formatCOP(result.amount) }}</div>
+          <div class="stat-desc">Calculado sobre un crédito de {{ formatCOP(result.amount) }}</div>
         </div>
 
         <div class="stat">
