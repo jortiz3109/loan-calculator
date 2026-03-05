@@ -43,6 +43,8 @@ const activeSystem = ref<AmortizationSystem>('french')
       </div>
     </div>
 
+    <p class="text-center text-sm text-base-content/70 py-3">Hi Jorg</p>
+
     <!-- Calculator panels -->
     <FrenchCreditCalculator v-if="activeSystem === 'french'" />
     <AmericanCreditCalculator v-else-if="activeSystem === 'american'" />
